@@ -166,10 +166,10 @@ const [quantities, setQuantities] = useState<{ [key: string]: number }>({
     })
   }
 
-  const totalAmount = event.tickets.reduce((sum, ticket) => {
-    const qty = quantities[ticket.id] || 0
-    return sum + ticket.price * qty
-  }, 0)
+  const totalAmount = event?.tickets?.reduce((sum, ticket) => {
+  const qty = quantities[ticket.id] || 0
+  return sum + ticket.price * qty
+}, 0) ?? 0
 
   const totalTicketsCount = Object.values(quantities).reduce((a, b) => a + b, 0)
 
