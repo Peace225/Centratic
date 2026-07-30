@@ -134,9 +134,10 @@ export default function EventDetailPage() {
   const eventId = Number(params?.id) || 1
   const event = MOCK_EVENTS.find((e) => e.id === eventId) || MOCK_EVENTS[0]
 
-  const [quantities, setQuantities] = useState<{ [key: string]: number }>({
-    [event.tickets[0]?.id || "std"]: 1
-  })
+ const ticketId = event?.tickets?.[0]?.id ?? "std"
+const [quantities, setQuantities] = useState<{ [key: string]: number }>({
+  [ticketId]: 1
+})
 
   const [shareUrl, setShareUrl] = useState("")
 
