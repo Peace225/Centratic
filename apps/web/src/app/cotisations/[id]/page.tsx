@@ -212,7 +212,9 @@ export default function CotisationDetailPage({ params }: { params: Promise<{ id:
                           <div className="flex items-center gap-1.5">
                             <p className="text-xs font-bold text-zinc-900">{donor.name}</p>
                             {donor.verified && (
-                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" title="Contribution vérifiée" />
+                              <span title="Contribution vérifiée" className="inline-flex items-center">
+                                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                              </span>
                             )}
                           </div>
                           <p className="text-[11px] text-zinc-400">{donor.date}</p>
