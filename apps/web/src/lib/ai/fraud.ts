@@ -12,5 +12,11 @@ export async function scoreFraud(data: any) {
     messages: [{ role: "user", content: prompt }],
     response_format: { type: "json_object" }
   })
-  return JSON.parse(res.choices[0].message.content!)
+
+  const content = res.choices?.[0]?.message?.content
+  if (!content) {
+    throw new Error("Aucune réponse reçue du modèle d'IA.")
+  }
+
+  return JSON.parse(content)
 }
