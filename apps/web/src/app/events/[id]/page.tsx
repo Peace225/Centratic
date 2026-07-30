@@ -226,9 +226,9 @@ const [quantities, setQuantities] = useState<{ [key: string]: number }>({
           <div className="lg:col-span-2 space-y-8">
             <div className="relative h-80 sm:h-[440px] w-full overflow-hidden rounded-3xl bg-slate-900 border border-slate-200 shadow-xl group">
               <img
-                src={event.image}
-                alt={event.title}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                src={event?.image || ""}
+                alt={event?.title || "Événement"}
+                className="h-full w-full object-cover transition-transform duration-700 ..."
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
               
