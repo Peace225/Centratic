@@ -132,7 +132,7 @@ const FAQS = [
 export default function EventDetailPage() {
   const params = useParams()
   const eventId = Number(params?.id) || 1
-  const event = MOCK_EVENTS.find((e) => e.id === eventId) || MOCK_EVENTS[0]
+  const event = (MOCK_EVENTS.find((e) => e.id === eventId) || MOCK_EVENTS[0])!
 
  const ticketId = event?.tickets?.[0]?.id ?? "std"
 const [quantities, setQuantities] = useState<{ [key: string]: number }>({
