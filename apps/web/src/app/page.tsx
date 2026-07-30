@@ -36,9 +36,7 @@ const CATEGORIES = [
   { id: "Autre", label: "Autre", icon: MoreHorizontal },
 ]
 
-// Base de données avec le drapeau, le pays et le promoteur pour chaque événement
 const MOCK_EVENTS = [
-  // Concert
   {
     id: 1,
     title: "TRK EN CONCERT AU PALAIS",
@@ -63,8 +61,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600",
     promoter: "Oubangui Stars Agency",
   },
-
-  // Culture
   {
     id: 3,
     title: "EXPOSITION ART & CULTURE",
@@ -89,8 +85,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600",
     promoter: "Collectif Patrimoine RCA",
   },
-
-  // Formation
   {
     id: 5,
     title: "MASTERCLASS DÉVELOPPEMENT WEB",
@@ -115,8 +109,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
     promoter: "Digital Growth Lab",
   },
-
-  // Soirée
   {
     id: 7,
     title: "SOIRÉE VIP ROOF_TOP",
@@ -141,8 +133,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=600",
     promoter: "Clubbing Africa",
   },
-
-  // Tourisme
   {
     id: 9,
     title: "ÉCHAPPÉE TOURISTIQUE AUX CHUTES DE BOALI",
@@ -167,8 +157,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=600",
     promoter: "Aventure & Nature RCA",
   },
-
-  // Sport
   {
     id: 11,
     title: "TOURNOI DE BASKETBALL INTER-QUARTIER",
@@ -193,8 +181,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&q=80&w=600",
     promoter: "Comité Athlétique RCA",
   },
-
-  // Festival
   {
     id: 13,
     title: "FESTIVAL DES ARTS DE RUE",
@@ -219,8 +205,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600",
     promoter: "Flavors & Beats Agency",
   },
-
-  // Science
   {
     id: 15,
     title: "CONFÉRENCE INNOVATION & SCIENCES",
@@ -245,8 +229,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600",
     promoter: "Bangui AI Community",
   },
-
-  // Religieux
   {
     id: 17,
     title: "GRANDE NUIT DE LOUANGE GOSPEL",
@@ -271,8 +253,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600",
     promoter: "Plateforme Interreligieuse",
   },
-
-  // Gastronomie
   {
     id: 19,
     title: "SALON DE LA GASTRONOMIE LOCALE",
@@ -297,8 +277,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=600",
     promoter: "Gourmet Event RCA",
   },
-
-  // Business
   {
     id: 21,
     title: "BUSINESS FORUM AFRIQUE CENTRALE",
@@ -323,8 +301,6 @@ const MOCK_EVENTS = [
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=600",
     promoter: "Réseau Jeunes Entrepreneurs",
   },
-
-  // Autre
   {
     id: 23,
     title: "SPECTACLE D'HUMOUR & STAND-UP",
@@ -371,26 +347,25 @@ export default function HomePage() {
     }))
   }
 
-  // Filtrage dynamique en fonction de la catégorie sélectionnée
   const filteredEvents =
     activeTab === "Toutes"
       ? MOCK_EVENTS
       : MOCK_EVENTS.filter((event) => event.category === activeTab)
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
-      {/* Barre de navigation centrale type Pilule */}
-      <div className="flex justify-center">
-        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm">
+    <div className="mx-auto max-w-7xl px-3 sm:px-6 py-6 space-y-6">
+      {/* Barre de navigation centrale type Pilule (responsive avec défilement horizontal sur mobile si nécessaire) */}
+      <div className="flex justify-center overflow-x-auto no-scrollbar py-1">
+        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm whitespace-nowrap">
           <Link
             href="/"
-            className="rounded-full bg-red-600 px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+            className="rounded-full bg-red-600 px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-white transition hover:bg-red-700"
           >
             Événements
           </Link>
           <Link
             href="/cotisations"
-            className="relative rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
+            className="relative rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
           >
             Cotisations
             <span className="absolute -top-2 right-1 rounded bg-emerald-600 px-1.5 py-0.5 text-[9px] font-bold uppercase text-white">
@@ -399,7 +374,7 @@ export default function HomePage() {
           </Link>
           <Link
             href="/votes"
-            className="rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
+            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
           >
             Votes en ligne
           </Link>
@@ -407,7 +382,7 @@ export default function HomePage() {
       </div>
 
       {/* Barre de filtres horizontale avec défilement */}
-      <div className="no-scrollbar flex items-center gap-3 overflow-x-auto pb-2">
+      <div className="no-scrollbar flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
         {CATEGORIES.map((cat) => {
           const Icon = cat.icon
           const isActive = activeTab === cat.id
@@ -415,13 +390,13 @@ export default function HomePage() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex min-w-[90px] flex-col items-center justify-center gap-1.5 rounded-xl border p-3 text-xs font-medium transition ${
+              className={`flex min-w-[80px] sm:min-w-[90px] flex-col items-center justify-center gap-1.5 rounded-xl border p-2.5 sm:p-3 text-[11px] sm:text-xs font-medium transition flex-shrink-0 ${
                 isActive
                   ? "border-red-200 bg-red-50 font-bold text-red-600 shadow-sm"
                   : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50"
               }`}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
               <span>{cat.label}</span>
             </button>
           )
@@ -429,13 +404,13 @@ export default function HomePage() {
       </div>
 
       {/* Compteur dynamique d'événements */}
-      <p className="text-center text-sm font-medium text-zinc-500">
+      <p className="text-center text-xs sm:text-sm font-medium text-zinc-500">
         {filteredEvents.length} événement{filteredEvents.length > 1 ? "s" : ""} trouvé{filteredEvents.length > 1 ? "s" : ""}
       </p>
 
       {/* Grille d'événements filtrée */}
       {filteredEvents.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {filteredEvents.map((event) => {
             const isSubscribed = subscriptions[event.id] || false
             return (
@@ -443,7 +418,7 @@ export default function HomePage() {
                 key={event.id}
                 className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-md"
               >
-                <div className="relative h-48 bg-zinc-900 overflow-hidden">
+                <div className="relative h-44 sm:h-48 bg-zinc-900 overflow-hidden">
                   <img
                     src={event.image}
                     alt={event.title}
@@ -457,13 +432,13 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col justify-between p-4 space-y-4">
+                <div className="flex flex-1 flex-col justify-between p-4 space-y-3 sm:space-y-4">
                   <div>
-                    <div className="flex items-start justify-between">
-                      <h3 className="line-clamp-1 font-bold text-zinc-900">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="line-clamp-1 font-bold text-zinc-900 text-sm sm:text-base">
                         {event.title}
                       </h3>
-                      <button className="text-zinc-400 hover:text-red-600">
+                      <button className="text-zinc-400 hover:text-red-600 flex-shrink-0">
                         <Heart className="h-5 w-5" />
                       </button>
                     </div>
@@ -471,12 +446,12 @@ export default function HomePage() {
                     <p className="mt-1 text-xs font-semibold text-emerald-600">
                       {event.price}
                     </p>
-                    <p className="mt-1 text-xs text-zinc-500">{event.location}</p>
+                    <p className="mt-1 text-xs text-zinc-500 line-clamp-1">{event.location}</p>
                   </div>
 
                   <Link
                     href={`/events/${event.id}`}
-                    className="block w-full rounded-lg bg-red-600 py-2.5 text-center text-sm font-bold text-white transition hover:bg-red-700"
+                    className="block w-full rounded-lg bg-red-600 py-2.5 text-center text-xs sm:text-sm font-bold text-white transition hover:bg-red-700"
                   >
                     Acheter tickets
                   </Link>
@@ -492,21 +467,21 @@ export default function HomePage() {
                     />
                     <span>{event.country}</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white shadow-sm">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-600 text-[10px] sm:text-xs font-bold text-white shadow-sm">
                         {getInitials(event.promoter)}
                       </div>
                       <div className="min-w-0">
                         <p className="text-[10px] text-zinc-400 leading-none">Publié par</p>
-                        <p className="mt-0.5 truncate text-xs font-bold text-zinc-900" title={event.promoter}>
+                        <p className="mt-0.5 truncate text-[11px] sm:text-xs font-bold text-zinc-900" title={event.promoter}>
                           {event.promoter}
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => toggleSubscribe(event.id)}
-                      className={`flex-shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition shadow-sm ${
+                      className={`flex-shrink-0 rounded-full px-3 py-1.5 text-[11px] sm:text-xs font-semibold transition shadow-sm ${
                         isSubscribed
                           ? "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 border border-zinc-300"
                           : "bg-zinc-900 text-white hover:bg-zinc-800"
@@ -522,7 +497,7 @@ export default function HomePage() {
         </div>
       ) : (
         <div className="py-20 text-center text-zinc-500">
-          <p className="text-base font-medium">Aucun événement trouvé dans cette catégorie pour le moment.</p>
+          <p className="text-sm sm:text-base font-medium">Aucun événement trouvé dans cette catégorie pour le moment.</p>
         </div>
       )}
     </div>

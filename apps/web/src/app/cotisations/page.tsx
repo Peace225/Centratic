@@ -139,25 +139,25 @@ export default function CotisationsPage() {
       : MOCK_COTISATIONS.filter((item) => item.category === activeTab)
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
-      {/* Barre de navigation centrale type Pilule */}
-      <div className="flex justify-center">
-        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 space-y-6 sm:space-y-8">
+      {/* Barre de navigation centrale type Pilule (Responsive avec scroll horizontal si écran très étroit) */}
+      <div className="w-full overflow-x-auto no-scrollbar pb-1 sm:pb-0 flex justify-start sm:justify-center">
+        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm whitespace-nowrap">
           <Link
             href="/"
-            className="rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
+            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
           >
             Événements
           </Link>
           <Link
             href="/cotisations"
-            className="rounded-full bg-red-600 px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+            className="rounded-full bg-red-600 px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-white transition hover:bg-red-700"
           >
             Cotisations
           </Link>
           <Link
             href="/votes"
-            className="rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
+            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900"
           >
             Votes en ligne
           </Link>
@@ -165,7 +165,7 @@ export default function CotisationsPage() {
       </div>
 
       {/* Barre de filtres horizontale avec défilement */}
-      <div className="no-scrollbar flex items-center gap-3 overflow-x-auto pb-2">
+      <div className="no-scrollbar flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-2">
         {CATEGORIES_COTISATION.map((cat) => {
           const Icon = cat.icon
           const isActive = activeTab === cat.id
@@ -173,7 +173,7 @@ export default function CotisationsPage() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex min-w-[100px] flex-col items-center justify-center gap-1.5 rounded-xl border p-3 text-xs font-medium transition ${
+              className={`flex min-w-[90px] sm:min-w-[100px] flex-col items-center justify-center gap-1.5 rounded-xl border p-2.5 sm:p-3 text-xs font-medium transition flex-shrink-0 ${
                 isActive
                   ? "border-red-200 bg-red-50 font-bold text-red-600 shadow-sm"
                   : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50"
@@ -187,13 +187,13 @@ export default function CotisationsPage() {
       </div>
 
       {/* Compteur dynamique de cagnottes */}
-      <p className="text-center text-sm font-medium text-zinc-500">
+      <p className="text-center text-xs sm:text-sm font-medium text-zinc-500">
         {filteredCotisations.length} cagnotte{filteredCotisations.length > 1 ? "s" : ""} trouvée{filteredCotisations.length > 1 ? "s" : ""}
       </p>
 
-      {/* Grille de cagnottes filtrée sur 4 colonnes pour des cartes compactes */}
+      {/* Grille de cagnottes filtrée responsive */}
       {filteredCotisations.length > 0 ? (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-5">
           {filteredCotisations.map((item) => {
             const isSubscribed = subscriptions[item.id] || false
             return (
@@ -201,7 +201,7 @@ export default function CotisationsPage() {
                 key={item.id}
                 className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-md"
               >
-                {/* En-tête avec image (hauteur réduite à h-36) */}
+                {/* En-tête avec image */}
                 <div className="relative h-36 bg-zinc-900 overflow-hidden">
                   <img
                     src={item.image}
@@ -223,7 +223,7 @@ export default function CotisationsPage() {
                       <h3 className="line-clamp-1 text-xs font-bold text-zinc-900" title={item.title}>
                         {item.title}
                       </h3>
-                      <button className="flex items-center gap-1 text-zinc-400 hover:text-red-600 flex-shrink-0">
+                      <button className="flex items-center gap-1 text-zinc-400 hover:text-red-600 flex-shrink-0 p-1">
                         <Heart className="h-3.5 w-3.5" />
                         <span className="text-[10px]">{item.likes}</span>
                       </button>
@@ -252,7 +252,7 @@ export default function CotisationsPage() {
                   {/* Bouton Participer converti en Link vers la page de détail */}
                   <Link
                     href={`/cotisations/${item.id}`}
-                    className="w-full rounded-lg bg-red-600 py-2 text-center text-xs font-bold text-white transition hover:bg-red-700 shadow-sm block"
+                    className="w-full rounded-lg bg-red-600 py-2.5 text-center text-xs font-bold text-white transition hover:bg-red-700 shadow-sm block"
                   >
                     Participer
                   </Link>
@@ -264,7 +264,7 @@ export default function CotisationsPage() {
                     <img
                       src={item.flag}
                       alt={item.country}
-                      className="h-3 w-4 rounded-xs object-cover shadow-xs border border-zinc-200"
+                      className="h-3 w-4 rounded-sm object-cover shadow-sm border border-zinc-200"
                     />
                     <span className="truncate">{item.country}</span>
                   </div>
@@ -282,7 +282,7 @@ export default function CotisationsPage() {
                     </div>
                     <button
                       onClick={() => toggleSubscribe(item.id)}
-                      className={`flex-shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold transition shadow-sm ${
+                      className={`flex-shrink-0 rounded-full px-3 py-1.5 text-[10px] font-semibold transition shadow-sm ${
                         isSubscribed
                           ? "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 border border-zinc-300"
                           : "bg-zinc-900 text-white hover:bg-zinc-800"

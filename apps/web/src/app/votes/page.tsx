@@ -11,7 +11,6 @@ import {
   Star,
   Zap,
   X,
-  Mail,
 } from "lucide-react"
 
 const CATEGORIES_VOTE = [
@@ -35,7 +34,7 @@ const VOTES_DATA = [
     points: "37 / 1000 pts",
     progress: 37,
     country: "République centrafricaine",
-    flagCode: "cf", // Code ISO pour Flagpedia
+    flagCode: "cf",
     promoter: "Bangui Event Prod",
     promoterInitials: "BE",
   },
@@ -128,39 +127,31 @@ const CREDIT_PACKS = [
 export default function VotesPage() {
   const [activeTab, setActiveTab] = useState("Toutes")
   const [selectedCampaign, setSelectedCampaign] = useState<typeof VOTES_DATA[0] | null>(null)
-  const [newsletterEmail, setNewsletterEmail] = useState("")
 
   const filteredVotes = useMemo(() => {
     if (activeTab === "Toutes") return VOTES_DATA
     return VOTES_DATA.filter((item) => item.category === activeTab)
   }, [activeTab])
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!newsletterEmail) return
-    alert(`Merci pour votre abonnement ! Les notifications seront envoyées à ${newsletterEmail}`)
-    setNewsletterEmail("")
-  }
-
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 space-y-6 sm:space-y-8">
       {/* Navigation centrale */}
-      <div className="flex justify-center">
-        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1 shadow-sm">
-          <Link href="/events" className="rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 hover:text-zinc-900 transition">
+      <div className="w-full overflow-x-auto no-scrollbar pb-1 sm:pb-0 flex justify-start sm:justify-center">
+        <div className="inline-flex rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm whitespace-nowrap">
+          <Link href="/events" className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-900 transition">
             Événements
           </Link>
-          <Link href="/cotisations" className="rounded-full px-6 py-2 text-sm font-semibold text-zinc-600 hover:text-zinc-900 transition">
+          <Link href="/cotisations" className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-900 transition">
             Cotisations
           </Link>
-          <Link href="/votes" className="rounded-full bg-red-600 px-6 py-2 text-sm font-semibold text-white shadow-sm">
+          <Link href="/votes" className="rounded-full bg-red-600 px-4 sm:px-6 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm">
             Votes
           </Link>
         </div>
       </div>
 
       {/* Barre de filtres horizontale */}
-      <div className="no-scrollbar flex items-center justify-start sm:justify-center gap-3 overflow-x-auto pb-2">
+      <div className="no-scrollbar flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-2">
         {CATEGORIES_VOTE.map((cat) => {
           const Icon = cat.icon
           const isActive = activeTab === cat.id
@@ -168,9 +159,9 @@ export default function VotesPage() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex min-w-[100px] flex-col items-center justify-center gap-1.5 rounded-xl border p-3 text-xs font-medium transition cursor-pointer ${
+              className={`flex min-w-[90px] sm:min-w-[100px] flex-col items-center justify-center gap-1.5 rounded-xl border p-2.5 sm:p-3 text-xs font-medium transition cursor-pointer flex-shrink-0 ${
                 isActive
-                  ? "border-red-200 bg-red-50 font-bold text-red-600 shadow-xs"
+                  ? "border-red-200 bg-red-50 font-bold text-red-600 shadow-sm"
                   : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50"
               }`}
             >
@@ -181,28 +172,28 @@ export default function VotesPage() {
         })}
       </div>
 
-      <p className="text-center text-sm font-medium text-zinc-500">
+      <p className="text-center text-xs sm:text-sm font-medium text-zinc-500">
         Votes en ligne sécurisés et vérifiés par IA
       </p>
 
       {/* Contenu principal */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         {/* Grille de votes */}
-        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {filteredVotes.length > 0 ? (
             filteredVotes.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs hover:shadow-md transition group"
+                className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white p-3.5 sm:p-4 shadow-sm hover:shadow-md transition group"
               >
                 {/* Image & Badge de rang */}
-                <div className="relative h-44 rounded-xl overflow-hidden bg-zinc-900 mb-3">
+                <div className="relative h-40 sm:h-44 rounded-xl overflow-hidden bg-zinc-900 mb-3">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                   />
-                  <div className="absolute top-2.5 left-2.5 bg-zinc-900/80 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
+                  <div className="absolute top-2.5 left-2.5 bg-zinc-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
                     {item.rank}
                   </div>
                   <div className="absolute top-2.5 right-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
@@ -235,25 +226,25 @@ export default function VotesPage() {
 
                   <button
                     onClick={() => setSelectedCampaign(item)}
-                    className="mt-2 w-full flex items-center justify-center gap-2 rounded-xl bg-amber-400 py-2.5 text-xs font-bold text-zinc-900 hover:bg-amber-500 transition cursor-pointer shadow-xs"
+                    className="mt-2 w-full flex items-center justify-center gap-2 rounded-xl bg-amber-400 py-2.5 text-xs font-bold text-zinc-900 hover:bg-amber-500 transition cursor-pointer shadow-sm"
                   >
                     <Zap className="h-4 w-4 fill-zinc-900" />
                     <span>Voter</span>
                   </button>
                 </div>
 
-                {/* Footer de la carte (Drapeau image sécurisé, Promoteur & S'abonner) */}
+                {/* Footer de la carte */}
                 <div className="mt-3 pt-3 border-t border-zinc-100 space-y-2.5">
                   <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
                     <img
                       src={`https://flagcdn.com/w40/${item.flagCode}.png`}
                       alt={item.country}
-                      className="h-3.5 w-5 object-cover rounded-xs shadow-xs"
+                      className="h-3.5 w-5 object-cover rounded-sm shadow-sm"
                     />
-                    <span>{item.country}</span>
+                    <span className="truncate">{item.country}</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
                       <div className="h-7 w-7 rounded-full bg-red-600 text-white flex items-center justify-center text-[11px] font-bold shrink-0">
                         {item.promoterInitials}
                       </div>
@@ -267,7 +258,7 @@ export default function VotesPage() {
                         e.stopPropagation()
                         alert(`Vous êtes maintenant abonné aux publications de ${item.promoter}`)
                       }}
-                      className="rounded-xl bg-zinc-900 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-zinc-800 transition cursor-pointer shadow-xs shrink-0"
+                      className="rounded-xl bg-zinc-900 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-zinc-800 transition cursor-pointer shadow-sm shrink-0"
                     >
                       S'abonner
                     </button>
@@ -283,17 +274,17 @@ export default function VotesPage() {
         </div>
 
         {/* Colonne latérale : Packs de crédits */}
-        <div className="lg:col-span-1 bg-blue-600 rounded-2xl p-5 text-white shadow-md space-y-4 sticky top-6">
+        <div className="lg:col-span-1 bg-blue-600 rounded-2xl p-4 sm:p-5 text-white shadow-md space-y-4 lg:sticky lg:top-6">
           <div className="flex items-center gap-2 font-bold text-sm">
             <Zap className="h-5 w-5 fill-white text-white" />
             <span>Packs de crédits</span>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2.5">
             {CREDIT_PACKS.map((pack, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between bg-blue-700/60 hover:bg-blue-700 transition px-4 py-3 rounded-xl border border-blue-500/40 text-xs font-bold cursor-pointer"
+                className="flex items-center justify-between bg-blue-700/60 hover:bg-blue-700 transition px-3.5 sm:px-4 py-3 rounded-xl border border-blue-500/40 text-xs font-bold cursor-pointer"
               >
                 <span>{pack.votes}</span>
                 <span className="bg-blue-800/80 px-2.5 py-1 rounded-lg">{pack.price}</span>
@@ -305,7 +296,7 @@ export default function VotesPage() {
 
       {/* Modale de vote interactive */}
       {selectedCampaign && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-zinc-900">Voter pour : {selectedCampaign.title}</h3>
